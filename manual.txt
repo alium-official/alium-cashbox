@@ -1,0 +1,33 @@
+# Remix deploy manual
+
+## Create implementation
+
+### AliumCashbox implementation contract
+
+0. Switch to SOLIDITY COMPILER tab.
+1. Switch to _AliumCash.Full.sol_ in opened file list tabs.
+2. Set compiler version 0.6.2 and press big blue button *Compile AliumCashbox.Full.sol*.
+3. Go to DEPLOY and RUN TRANSACTION tab.
+4. Select *AliumCashbox* from Contract field.
+5. Push Deploy button.
+6. On "Deployed Contracts" section -> AliumCashbox AT... write down AliumCashImpl address.
+
+## Create upgradeable proxy
+
+### AliumCashbox Proxy contract
+0. Switch to SOLIDITY COMPILER tab.
+1. Switch to _AliumProxy.Full.sol_ in opened file list tabs.
+2. Set compiler version 0.6.2 and press big blue button *Compile EmiVotingProxyAdmin.sol*.
+3. Select *TransparentUpgradeableProxy* from Contract field.
+4. Change account address to "upgrade admin" - special account for upgrade purpose.
+5. Set _LOGIC address_ parameter to AliumCashImpl address.
+6. Set _ADMIN address_ parameter to "upgrade admin" address.
+7. Set _DATA bytes_ parameter to value of prepared initialization data
+    7.1. Prepare initialization data:
+    7.1.1. In Deployed Contract section open AliumCashbox accordion
+    7.1.2. Select initialize method, open params pane
+    7.1.3. Set _aliumCashboxAdmin_ to Alium Cash admin wallet address (wallet for setting limits).
+    7.1.4. Press small double-sheet icon to the left of *transact* button (don't press button itself!!!) - the encoded parameters will be copied to clipboard.
+    7.1.5. Insert copied encoded parameters into _DATA_ field
+8. Push Transact button.
+9. On "Deployed Contracts" section -> TransactUpgradeableProxy AT... write down final *AliumCashbox Proxy* address.
