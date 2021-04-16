@@ -36,12 +36,9 @@ contract AliumCashbox is Initializable, Privilegeable {
         _addAdmin(_aliumCashboxAdmin);
     }
 
-    /********** public functions ***************/
-
     /**
      * @dev get alium token ballance on the contract
      */
-
     function getBalance() external view returns (uint256) {
         return (IERC20(almToken).balanceOf(address(this)));
     }
@@ -49,7 +46,6 @@ contract AliumCashbox is Initializable, Privilegeable {
     /**
      * @dev get actual alium token withdrawal limit for the wallet
      */
-
     function getWalletLimit(address _wallet) external view returns (uint256) {
         return (allowedList[_wallet].totalLimit);
     }
@@ -57,7 +53,6 @@ contract AliumCashbox is Initializable, Privilegeable {
     /**
      * @dev get alium token total withdrawn amount for the wallet
      */
-
     function getWalletWithdrawals(address _wallet)
         external
         view
@@ -70,12 +65,12 @@ contract AliumCashbox is Initializable, Privilegeable {
      * @dev withdraw ALM token to allowed wallet address respecting token limits
      * @param _amount ALM token amount for withdrawal
      */
-
     function withdraw(uint256 _amount) external {
         if (
             allowedList[msg.sender].totalLimit == 0 &&
             allowedList[msg.sender].withdrawn == 0
         ) revert("You are not allowed to claim ALMs!");
+
         require(
             allowedList[msg.sender].totalLimit > 0,
             "Your limit is exhausted!"
@@ -95,7 +90,6 @@ contract AliumCashbox is Initializable, Privilegeable {
         IERC20(almToken).safeTransfer(msg.sender, _amount);
     }
 
-    /********** admin functions ****************/
     /**
      * @dev set withdrawAdmin only for run withdrawCustom
      * @param _withdrawAdmin set wallet address
@@ -109,7 +103,6 @@ contract AliumCashbox is Initializable, Privilegeable {
      * @param _wallet   wallet address for withdrawal allowance
      * @param _newLimit new amount limitation for withdrawal
      */
-
     function setWalletLimit(address _wallet, uint256 _newLimit)
         public
         onlyAdmin
@@ -136,6 +129,7 @@ contract AliumCashbox is Initializable, Privilegeable {
             "check input values!"
         );
         require(_token != almToken, "Alium token not allowed!");
+
         IERC20(_token).safeTransfer(_sendTo, _amount);
     }
 }

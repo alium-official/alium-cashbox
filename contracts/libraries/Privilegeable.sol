@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity =0.6.2;
 
@@ -34,9 +34,6 @@ abstract contract Privilegeable {
         return true;
     }
 
-    //-----------
-    // internals
-    //-----------
     function _addAdmin(address _admin) internal returns (bool) {
         _privilegeTable[_admin] = true;
         emit PrivilegeGranted(_admin);

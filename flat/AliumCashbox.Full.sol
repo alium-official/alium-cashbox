@@ -623,7 +623,7 @@ library SafeERC20 {
 
 // File: contracts/libraries/Privilegeable.sol
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity =0.6.2;
 

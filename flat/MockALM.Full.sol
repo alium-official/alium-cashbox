@@ -632,7 +632,7 @@ contract ERC20 is Context, IERC20 {
 
 // File: contracts/mocks/MockALM.sol
 
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity =0.6.2;
 
